@@ -12,7 +12,7 @@ namespace Cadastro
     {
         [System.Serializable]
 
-        struct Cliente
+        struct Paciente
         {
             public string nome;
             public string cpf;
@@ -20,7 +20,7 @@ namespace Cadastro
             public string cel;
         }
 
-        static List<Cliente> Clientes = new List<Cliente>();
+        static List<Paciente> Pacientes = new List<Paciente>();
 
         enum Menu { cadastrar = 1, remover = 2, listar = 3, consultar = 4, sair = 5 };
 
@@ -31,8 +31,8 @@ namespace Cadastro
             bool EscolhaSair = false;
             while (!EscolhaSair) 
             {
-                Console.Write("Sistema de clientes\n");
-                Console.WriteLine("1 - Cadastrar Cliente\n2 - Remover\n3 - Listar Clientes\n4 - Consultar por CPF\n5 - Sair");
+                Console.Write("Sistema de Vacinação\n");
+                Console.WriteLine("1 - Cadastrar Paciente\n2 - Remover\n3 - Listar Pacientes\n4 - Consultar por CPF\n5 - Sair");
                 int intOp = int.Parse(Console.ReadLine());
                 Menu opcao = (Menu)intOp;
 
@@ -74,44 +74,44 @@ namespace Cadastro
         }
         static void Listagem()
         {
-            if (Clientes.Count > 0)
+            if (Pacientes.Count > 0)
             {
-                Console.WriteLine("Lista de Clientes:");
+                Console.WriteLine("Lista de Pacientes:");
                 int i = 0;
-                foreach (Cliente cliente in Clientes)
+                foreach (Paciente paciente in Pacientes)
                 {
                     Console.WriteLine($"Código: {i}");
-                    Console.WriteLine($"Nome: {cliente.nome}");
-                    Console.WriteLine($"CPF: {cliente.cpf}");
-                    Console.WriteLine($"RG: {cliente.rg}");
-                    Console.WriteLine($"Celular: {cliente.cel}");
+                    Console.WriteLine($"Nome: {paciente.nome}");
+                    Console.WriteLine($"CPF: {paciente.cpf}");
+                    Console.WriteLine($"RG: {paciente.rg}");
+                    Console.WriteLine($"Celular: {paciente.cel}");
                     Console.WriteLine("=====================================");
                     i++;
                 }
             }
             else
             {
-                Console.WriteLine("Nenhum cliente encontrado");
+                Console.WriteLine("Nenhum paciente encontrado");
             }
         }
         static void Cadastrar()
         {
             string Cpf;
             string Rg;
-            Cliente cliente = new Cliente();
-            Console.WriteLine("Cadastro de clientes");
-            Console.WriteLine("Nome do cliente");
-            cliente.nome = Console.ReadLine();
-            Console.WriteLine("CPF do cliente");
+            Paciente paciente = new Paciente();
+            Console.WriteLine("Cadastro de Pacientes");
+            Console.WriteLine("Nome do paciente");
+            paciente.nome = Console.ReadLine();
+            Console.WriteLine("CPF do paciente");
             Cpf = Console.ReadLine();
-            cliente.cpf = FormatCnpjCpf.FormatCPF(Cpf);
-            Console.WriteLine("RG do cliente");
+            paciente.cpf = FormatCnpjCpf.FormatCPF(Cpf);
+            Console.WriteLine("RG do paciente");
             Rg = Console.ReadLine();
-            cliente.rg = FormatCnpjRg.FormatRG(Rg);
-            Console.WriteLine("Número de celular do cliente");
-            cliente.cel = Console.ReadLine();
+            paciente.rg = FormatCnpjRg.FormatRG(Rg);
+            Console.WriteLine("Número de celular do paciente");
+            paciente.cel = Console.ReadLine();
 
-            Clientes.Add(cliente);
+            Pacientes.Add(paciente);
             Salvar();
 
             Console.WriteLine("Cadastro concluído, aperte enter para sair.");
@@ -120,11 +120,11 @@ namespace Cadastro
         static void Remover()
         {
             Listagem();
-            Console.WriteLine("Digite o id do Cliente que deseja remover");
+            Console.WriteLine("Digite o id do Paciente que deseja remover");
             int id = int.Parse(Console.ReadLine());
-            if (id >= 0 && id < Clientes.Count)
+            if (id >= 0 && id < Pacientes.Count)
             {
-                Clientes.RemoveAt(id);
+                Pacientes.RemoveAt(id);
                 Salvar();
             }
             else
@@ -135,19 +135,19 @@ namespace Cadastro
         }        
         static void ConsultarCPF()
         {
-            int c = Clientes.Count;
-            Console.WriteLine("Digite o CPF do cliente:");
+            int c = Pacientes.Count;
+            Console.WriteLine("Digite o CPF do paciente:");
             string cpfCon = Console.ReadLine();
             string cpfPes = FormatCnpjCpf.FormatCPF(cpfCon);
             for (int i = 0; i < c; i++)
             {
-                if (String.Compare(cpfPes, Clientes[i].cpf) == 0)
+                if (String.Compare(cpfPes, Pacientes[i].cpf) == 0)
                 {
                     Console.WriteLine($"Código: {i}");
-                    Console.WriteLine($"Nome: {Clientes[i].nome}");
-                    Console.WriteLine($"CPF: {Clientes[i].cpf}");
-                    Console.WriteLine($"RG: {Clientes[i].rg}");
-                    Console.WriteLine($"Celular: {Clientes[i].cel}");
+                    Console.WriteLine($"Nome: {Pacientes[i].nome}");
+                    Console.WriteLine($"CPF: {Pacientes[i].cpf}");
+                    Console.WriteLine($"RG: {Pacientes[i].rg}");
+                    Console.WriteLine($"Celular: {Pacientes[i].cel}");
                     Console.WriteLine("=====================================");
                 }
             }
@@ -156,19 +156,19 @@ namespace Cadastro
         }
         static void ConsultarRG()
         {
-            int c = Clientes.Count;
-            Console.WriteLine("Digite o RG do cliente");
+            int c = Pacientes.Count;
+            Console.WriteLine("Digite o RG do paciente");
             string rgCon = Console.ReadLine();
             string rgPes = FormatCnpjRg.FormatRG(rgCon);
             for (int i = 0; i < c;i++)
             {
-                if (String.Compare(rgPes, Clientes[i].rg) == 0)
+                if (String.Compare(rgPes, Pacientes[i].rg) == 0)
                 {
                     Console.WriteLine($"Código: {i}");
-                    Console.WriteLine($"Nome: {Clientes[i].nome}");
-                    Console.WriteLine($"CPF: {Clientes[i].cpf}");
-                    Console.WriteLine($"RG: {Clientes[i].rg}");
-                    Console.WriteLine($"Celular: {Clientes[i].cel}");
+                    Console.WriteLine($"Nome: {Pacientes[i].nome}");
+                    Console.WriteLine($"CPF: {Pacientes[i].cpf}");
+                    Console.WriteLine($"RG: {Pacientes[i].rg}");
+                    Console.WriteLine($"Celular: {Pacientes[i].cel}");
                     Console.WriteLine("=====================================");
                 }
             }
@@ -177,31 +177,31 @@ namespace Cadastro
         }
         static void Salvar()
         {
-            FileStream stream = new FileStream("Clientes.txt", FileMode.OpenOrCreate);
+            FileStream stream = new FileStream("Pacientes.txt", FileMode.OpenOrCreate);
             BinaryFormatter encoder = new BinaryFormatter();
 
-            encoder.Serialize(stream, Clientes);
+            encoder.Serialize(stream, Pacientes);
 
             stream.Close();
         }
         static void Carregar()
         {
-            FileStream stream = new FileStream("Clientes.txt", FileMode.OpenOrCreate);
+            FileStream stream = new FileStream("Pacientes.txt", FileMode.OpenOrCreate);
 
             try
             {
                 BinaryFormatter encoder = new BinaryFormatter();
 
-                Clientes = (List<Cliente>)encoder.Deserialize(stream);  
+                Pacientes = (List<Paciente>)encoder.Deserialize(stream);  
 
-                if (Clientes == null)
+                if (Pacientes == null)
                 {
-                    Clientes = new List<Cliente>();
+                    Pacientes = new List<Paciente>();
                 }
             }
             catch (Exception e) 
             {
-                Clientes = new List<Cliente>();
+                Pacientes = new List<Paciente>();
             }
 
             stream.Close();
