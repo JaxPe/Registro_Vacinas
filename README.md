@@ -1,19 +1,19 @@
-# Cadastro de Clientes
+# Cadastro de Pacientes
 
-Este é um projeto simples em C# para cadastro de clientes, desenvolvido para fins de aprendizado. O sistema permite cadastrar, remover, listar e consultar clientes por CPF ou RG. Os dados são armazenados localmente em um arquivo binário.
+Este é um projeto simples em C# para cadastro de pacientes, desenvolvido para fins de aprendizado. O sistema permite cadastrar, remover, listar e consultar pacientes por CPF ou RG. Os dados são armazenados localmente em um arquivo binário.
 
 ## Funcionalidades
 
-- **Cadastrar Cliente:** Adiciona um novo cliente com nome, CPF, RG e número de celular.
-- **Remover Cliente:** Remove um cliente da lista pelo seu código.
-- **Listar Clientes:** Exibe todos os clientes cadastrados.
-- **Consultar Cliente:** Permite consultar um cliente pelo CPF ou RG.
-- **Persistência:** Os dados dos clientes são salvos em um arquivo chamado `Clientes.txt`.
+- **Cadastrar Paciente:** Adiciona um novo paciente com nome, CPF, RG e número de celular.
+- **Remover Paciente:** Remove um paciente da lista pelo seu código.
+- **Listar Pacientes:** Exibe todos os pacientes cadastrados.
+- **Consultar Paciente:** Permite consultar um paciente pelo CPF ou RG.
+- **Persistência:** Os dados dos pacientes são salvos em um arquivo chamado `Pacientes.txt`.
 
 ## Estrutura do Projeto
 
 - `Program.cs`: Arquivo principal com a lógica do sistema.
-- `FormatCnpjCpf.cs`: Contém funções utilitárias para formatação e remoção de formatação de CPF e RG.
+- `FormatCnpjCpf.cs`: Contém funções utilitárias para formatação e remoção de formatação de CPF.
 - `Cadastro.csproj`: Arquivo de configuração do projeto.
 
 ## Como Executar
@@ -24,16 +24,16 @@ Este é um projeto simples em C# para cadastro de clientes, desenvolvido para fi
 
 ## Observações
 
-- O arquivo de dados `Clientes.txt` será criado automaticamente na primeira execução.
-- O projeto utiliza serialização binária para salvar e carregar os dados dos clientes.
+- O arquivo de dados `Pacientes.txt` será criado automaticamente na primeira execução.
+- O projeto utiliza serialização binária para salvar e carregar os dados dos pacientes.
 
 ## Exemplo de Uso
 
 ```
-Sistema de clientes
-1 - Cadastrar Cliente
+Sistema de Vacinação
+1 - Cadastrar Paciente
 2 - Remover
-3 - Listar Clientes
+3 - Listar Pacientes
 4 - Consultar por CPF
 5 - Sair
 ```
